@@ -1,0 +1,9 @@
+Apache Spark is a unified analytics engine for large-scale data processing.
+Spark provides an interface for programming entire clusters with implicit data parallelism.
+RDDs are the fundamental data structure of Apache Spark.
+Spark is fast because it uses in-memory computing capabilities.
+Data processing with Spark is distributed across multiple nodes in a cluster.
+Spark supports multiple programming languages including Python, Java, Scala, and R.
+The Spark ecosystem includes Spark SQL, Spark Streaming, MLlib, and GraphX.
+Spark can run on Hadoop, Apache Mesos, Kubernetes, standalone, or in the cloud.
+Apache Spark was originally developed at UC Berkeley in 2009.

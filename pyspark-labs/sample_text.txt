@@ -1,0 +1,6 @@
+Apache Spark is a unified analytics engine for large-scale data processing.
+Spark provides an interface for programming entire clusters.
+RDDs are the fundamental data structure of Apache Spark.
+Spark is fast because it uses in-memory computing.
+Data processing with Spark is distributed across multiple nodes.
+Spark supports multiple programming languages including Python.
