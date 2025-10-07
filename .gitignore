@@ -209,3 +209,9 @@ __marimo__/
 
 
 pyspark-env/
+
+
+flight-time.csv
+flight-time.json
+flight-time.parquet
+sink/

@@ -1,76 +1,94 @@
-
+# ============================================================================
+# PySpark Example 1: Basic ETL Pipeline with DataFrame Operations
+# ============================================================================
+# INTENT: Demonstrate fundamental PySpark workflow - read CSV, transform data, write output
+# CONCEPTS: SparkSession setup, partitioning, DataFrame API, write modes
 
 from pyspark.sql import SparkSession
 from pyspark import SparkConf
 
-conf = SparkConf().setAppName("lab_02").setMaster("local[*]")
+# --------------------------------------------
+# 1. Spark Session Setup
+# --------------------------------------------
+conf = SparkConf() \
+    .setAppName("app1") \
+    .setMaster("local[3]")       # Use 3 CPU cores locally
+    
+spark = SparkSession \
+    .builder \
+    .config(conf=conf) \
+    .getOrCreate()
 
-spark = SparkSession.builder.config(conf=conf).getOrCreate()
-
-# Load the data ( from any source & any format of data )
-
-survey_df=spark.read \
+# --------------------------------------------
+# 2. Data Ingestion
+# --------------------------------------------
+# Read mental health survey CSV with schema inference
+survey_df = spark.read \
     .format("csv") \
     .option("header", "true") \
     .option("inferSchema", "true") \
-    .load("./data/survey.csv")
-    
-# survey_df.printSchema()  
-# survey_df.show()  
+    .load("./source/survey.csv") 
 
-print(survey_df.rdd.getNumPartitions())
+# Optional: Check data structure
+# survey_df.printSchema()
+# survey_df.show()
 
-# repartition the data
-survey_df=survey_df.repartition(2)
+# --------------------------------------------
+# 3. Partitioning Management
+# --------------------------------------------
+# Check initial partitions (affects parallelism)
+# print(survey_df.rdd.getNumPartitions())
 
-print(survey_df.rdd.getNumPartitions())
+# Repartition to 2 partitions for better resource utilization
+survey_df = survey_df.repartition(2)
 
-print(survey_df.rdd.glom().map(len).collect())
+# Verify partitioning and data distribution
+# print(survey_df.rdd.getNumPartitions())
+# print(survey_df.rdd.glom().map(len).collect())  # Records per partition
 
-
-# Transformations 
-# in 2 ways we can write the transformation
-# 1. using SQL
-# 2. using DataFrame API
-
-# Select Age , Country where Age < 40 and group by Country 
-
-# 1. using SQL
-
-# survey_df.createOrReplaceTempView("survey_tbl")
-# result_df=spark.sql("""
-#     select Country, count(*) as total_count 
-#     from survey_tbl 
-#     where Age < 40 
-#     group by Country
-# """)
-
-# show the result
-# result_df.show()
-
-# 2. using DataFrame API
-result_df=survey_df \
-    .select("Age","Country") \
+# --------------------------------------------
+# 4. Data Transformation (Lazy Operations)
+# --------------------------------------------
+# Filter young respondents and count by country
+result_df = survey_df \
+    .select("Age", "Country") \
     .where("Age < 40") \
     .groupBy("Country") \
-    .count() 
-# show the result
+    .count()
+
+# Alternative: SQL approach
+# survey_df.createOrReplaceTempView("survey")
+# result_df = spark.sql("SELECT Country, COUNT(*) as count FROM survey WHERE Age < 40 GROUP BY Country")
+
+# --------------------------------------------
+# 5. Data Output (Actions - trigger computation)
+# --------------------------------------------
+# Option 1: Display results
 # result_df.show()
+
+# Option 2: Collect to Python list (avoid for large data)
+# python_list = result_df.collect()
+# for row in python_list:
+#     print(row["Country"], row["count"])
+
+# Option 3: Write to file (recommended for production)
 result_df.write \
     .format("csv") \
     .mode("overwrite") \
     .option("header", "true") \
-    .save("./data/survey_count_by_country_df")
-    
-# // for spark UI
-input("Press Enter to continue...")   
-    
-# stop the spark session
-spark.stop()
+    .save("./sink/survey_count_by_country_df")
 
-    
+# --------------------------------------------
+# 6. Cleanup
+# --------------------------------------------
+# input("Press Enter to continue...")
+spark.stop()  # Always release resources
 
-
-
-
-
+# ============================================================================
+# SUMMARY: Complete ETL pipeline demonstrating:
+# - Spark configuration and session management
+# - CSV data ingestion with schema inference  
+# - Partitioning for performance optimization
+# - DataFrame transformations (select, filter, groupBy, count)
+# - Multiple output options (show, collect, write)
+# ============================================================================
