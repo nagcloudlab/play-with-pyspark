@@ -1,0 +1,241 @@
+
+
+
+
+Spark Internals Deep Topics List
+
+Core Execution Engine
+1. Lazy Evaluation & Query Planning
+
+How Spark builds execution plans before doing any work
+Logical vs Physical plans creation process
+When transformations are recorded vs when they execute
+Impact on performance and optimization opportunities
+
+2. Catalyst Optimizer Deep Dive
+
+Rule-based optimizations (predicate pushdown, column pruning, constant folding)
+Cost-based optimizations (join reordering, statistics usage)
+How optimizer transforms your code automatically
+Writing optimizer-friendly code
+
+3. Jobs, Stages & DAG Creation
+
+How logical plans become physical execution graphs
+Stage boundary determination (wide vs narrow transformations)
+DAG construction and stage dependencies
+Stage parallelization strategies
+
+4. Task Distribution & Partitioning
+
+How stages break into tasks
+Partition-to-task mapping mechanics
+Task scheduling across executors
+Partitioning strategies and their performance impact
+
+
+Data Movement & Shuffles
+5. Shuffle Internals Deep Dive
+
+Hash vs Range vs Round-robin partitioning
+Shuffle write/read mechanics and file management
+Network communication during shuffles
+Shuffle optimization techniques and tuning
+
+6. Join Strategies & Optimization
+
+Broadcast vs Sort-Merge vs Hash joins
+Join selection algorithm and size estimation
+Skew join handling and optimization
+Multi-table join ordering strategies
+
+7. Partitioning Strategies
+
+Default partitioning behavior
+Custom partitioners and when to use them
+Repartitioning vs coalesce decisions
+Data locality and partition placement
+
+
+Memory & Resource Management
+8. Memory Management Architecture
+
+Execution vs Storage memory allocation
+Spill mechanisms and disk usage patterns
+Garbage collection impact and tuning
+Memory pressure handling strategies
+
+9. Caching & Storage Optimization
+
+Storage levels and their trade-offs
+Cache replacement policies and strategies
+When and what to cache for optimal performance
+Memory vs disk vs serialized storage decisions
+
+10. Executor Resource Management
+
+Core allocation and CPU utilization
+Memory allocation per executor
+Dynamic resource allocation
+Container management and overhead
+
+
+Advanced Optimization Techniques
+11. Adaptive Query Execution (AQE)
+
+Runtime optimization decisions
+Dynamic partition pruning
+Adaptive join selection
+Skew join optimization at runtime
+
+12. Predicate & Projection Pushdown
+
+Filter pushdown to data sources
+Column pruning optimization
+Partition pruning strategies
+Source-level optimization techniques
+
+13. Bucketing & Pre-partitioning
+
+Bucketing strategies for join optimization
+Pre-partitioned data advantages
+Bucket pruning during joins
+Maintenance of bucketed tables
+
+
+Data Formats & I/O
+14. File Format Optimization
+
+Parquet vs ORC vs Delta Lake performance
+Columnar storage advantages
+Compression strategies and trade-offs
+Schema evolution and performance impact
+
+15. Serialization Deep Dive
+
+Java vs Kryo serialization
+Custom serializers for performance
+Serialization overhead in shuffles
+Broadcast variable serialization
+
+16. I/O Optimization Patterns
+
+Reading strategies for different data sources
+Write optimization and partitioning
+Concurrent I/O and parallelism
+Network I/O minimization techniques
+
+
+Configuration & Tuning
+17. Critical Configuration Parameters
+
+spark.sql.shuffle.partitions tuning
+Memory fraction configurations
+Parallelism and core allocation settings
+Network and timeout configurations
+
+18. Workload-Specific Tuning
+
+ETL workload optimization patterns
+Interactive query optimization
+Streaming workload considerations
+Machine learning workload tuning
+
+19. Dynamic Configuration & Auto-tuning
+
+Runtime configuration adjustments
+Automatic parameter selection
+Workload-aware optimization
+Cost-based configuration decisions
+
+
+Monitoring & Debugging
+20. Spark UI Mastery
+
+Jobs, Stages, Tasks analysis techniques
+SQL tab and physical plan interpretation
+Executors and memory usage monitoring
+Storage tab and cache analysis
+
+21. Performance Metrics & Profiling
+
+Key performance indicators identification
+Bottleneck detection methodologies
+Custom metrics and monitoring
+Performance regression detection
+
+22. Debugging Techniques
+
+Common performance anti-patterns
+Memory leak detection and prevention
+Shuffle spill analysis and resolution
+Data skew identification and mitigation
+
+
+Advanced Topics
+23. Custom Optimization Techniques
+
+Writing custom Catalyst rules
+Custom partitioners implementation
+UDF optimization strategies
+Custom data source optimization
+
+24. Streaming Internals
+
+Micro-batch execution model
+Watermarking and late data handling
+State management in streaming
+Checkpoint and recovery mechanisms
+
+25. Multi-cluster & Advanced Deployments
+
+Cross-cluster data sharing
+Multi-tenant optimization
+Resource isolation strategies
+Advanced security and performance
+
+
+Real-World Optimization Scenarios
+26. Large Join Optimization
+
+Multi-billion row join strategies
+Memory management for large joins
+Broadcast threshold optimization
+Join hint usage and effectiveness
+
+27. Data Skew Handling
+
+Skew detection techniques
+Salting and repartitioning strategies
+Custom partitioning for skewed data
+Runtime skew mitigation
+
+28. ETL Pipeline Optimization
+
+End-to-end pipeline performance
+Checkpointing strategies
+Incremental processing patterns
+Resource utilization optimization
+
+29. Cost Optimization
+
+Resource right-sizing techniques
+Spot instance utilization
+Storage cost optimization
+Compute vs storage trade-offs
+
+30. Production Monitoring & Maintenance
+
+Performance monitoring strategies
+Automated optimization techniques
+Capacity planning methodologies
+Performance troubleshooting workflows
+
+
+Pick Your Deep Dive
+Each topic includes:
+
+Conceptual Understanding: How it works internally
+Hands-On Examples: Code and Spark UI analysis
+Optimization Techniques: Performance tuning strategies
+Real-World Application: When and how to apply
