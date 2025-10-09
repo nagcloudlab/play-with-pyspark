@@ -1,0 +1,236 @@
+Phase 1: Stream Foundation
+Basic Stream Operations
+
+Reading from Kafka streams
+Schema definition and inference
+Basic DataFrame operations (select, filter, withColumn)
+Data type conversions
+Column transformations
+Simple UDF applications
+
+Output Fundamentals
+
+Console output mode
+File sink operations
+Append output mode
+Basic checkpoint configuration
+Error handling basics
+
+Data Validation
+
+Null value handling
+Data type validation
+Range checks for financial amounts
+Invalid record filtering
+Data quality metrics
+
+
+Phase 2: Time-Based Processing
+Time Concepts
+
+Event time vs processing time
+Timestamp extraction and parsing
+Timezone handling
+Late data scenarios
+
+Windowing Operations
+
+Tumbling windows (fixed intervals)
+Sliding windows (overlapping intervals)
+Session windows (gap-based)
+Window aggregations (sum, count, avg)
+Multiple window sizes
+
+Watermarking
+
+Watermark configuration
+Late data handling
+Watermark propagation
+Threshold tuning
+Impact on memory usage
+
+
+Phase 3: Advanced Aggregations
+Grouping Operations
+
+Single column grouping
+Multi-column grouping
+Hierarchical grouping
+Conditional grouping
+
+Aggregation Functions
+
+Built-in aggregations (sum, count, min, max, avg)
+Distinct counting
+Percentile calculations
+Custom aggregation functions
+Windowed aggregations
+
+Running Calculations
+
+Cumulative sums
+Running averages
+Rolling calculations
+Progressive totals
+
+
+Phase 4: Join Operations
+Stream-Static Joins
+
+Broadcast joins with reference data
+Dimension table lookups
+Static data refreshing
+Memory management for static data
+
+Stream-Stream Joins
+
+Inner joins with time bounds
+Left/Right outer joins
+Full outer joins
+Join condition optimization
+State management in joins
+
+Join Performance
+
+Partition alignment
+Join hint usage
+State store optimization
+Memory vs disk trade-offs
+
+
+Phase 5: Stateful Operations
+State Management
+
+State store fundamentals
+State persistence and recovery
+State TTL (time-to-live)
+State size monitoring
+
+Deduplication
+
+Exact deduplication by key
+Approximate deduplication
+Time-based deduplication
+Memory-efficient deduplication
+
+Complex Event Processing
+
+Pattern detection across events
+Sequence matching
+Condition-based state transitions
+Multi-step workflows
+
+
+Phase 6: Advanced Stream Processing
+Output Modes
+
+Append mode (new records only)
+Update mode (changed records)
+Complete mode (full result set)
+Mode selection criteria
+
+Trigger Mechanisms
+
+Processing time triggers
+Continuous processing triggers
+Once triggers for batch-like processing
+Adaptive trigger strategies
+
+Multiple Streams
+
+Union of multiple streams
+Stream routing and splitting
+Fan-in and fan-out patterns
+Cross-stream coordination
+
+
+Phase 7: Production Patterns
+Error Handling
+
+Exception handling in transformations
+Dead letter queue patterns
+Poison record handling
+Graceful degradation
+
+Exactly-Once Processing
+
+Idempotent operations design
+Transactional sinks
+Offset management
+End-to-end exactly-once guarantees
+
+Checkpoint Management
+
+Checkpoint location strategies
+Recovery from checkpoints
+Checkpoint cleanup
+Migration between versions
+
+
+Phase 8: Performance Optimization
+Resource Tuning
+
+Partition strategy optimization
+Memory allocation tuning
+CPU utilization optimization
+Parallelism configuration
+
+Backpressure Handling
+
+Rate limiting implementation
+Queue size management
+Auto-scaling patterns
+Load balancing strategies
+
+State Store Optimization
+
+RocksDB configuration
+State store partitioning
+Compaction strategies
+State store monitoring
+
+
+Phase 9: Monitoring and Observability
+Metrics and Monitoring
+
+Streaming query metrics
+Custom business metrics
+Latency monitoring
+Throughput analysis
+
+Debugging Techniques
+
+Query plan analysis
+Streaming UI exploration
+Log analysis patterns
+Performance bottleneck identification
+
+Alerting and Notifications
+
+Real-time alert generation
+Threshold-based monitoring
+Business rule violations
+System health monitoring
+
+
+Phase 10: Integration Patterns
+External System Integration
+
+Database sinks (JDBC)
+REST API integration
+Message queue integration
+File system operations
+
+Schema Evolution
+
+Schema registry integration
+Backward compatibility handling
+Schema version management
+Data migration strategies
+
+Multi-Environment Deployment
+
+Development vs production configurations
+Environment-specific optimizations
+Deployment automation
+Configuration management
