@@ -1,7 +1,4 @@
 
-
-
-
 Spark Internals Deep Topics List
 
 Core Execution Engine
