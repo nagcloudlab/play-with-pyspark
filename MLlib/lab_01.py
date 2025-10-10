@@ -1,5 +1,4 @@
 
-
 # Import necessary Spark modules
 from pyspark.sql import SparkSession          # Main entry point for Spark
 from pyspark.ml.feature import VectorAssembler # Combines multiple columns into one vector
